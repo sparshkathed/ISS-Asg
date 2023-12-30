@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Hiring Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error-message {
+      color: #ff0000;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="employeeForm" onsubmit="validateForm(event)">
+    <label for="employeeId">Employee ID:</label>
+    <input type="text" id="employeeId" name="employeeId" pattern="\d{5}" title="Enter 5 digits only" required>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Enter 10 digits only" required>
+
+    <label for="aadhar">Aadhar Card:</label>
+    <input type="text" id="aadhar" name="aadhar" pattern="\d{12}" title="Enter 12 digits only" required>
+
+    <button type="submit">Submit</button>
+
+    <p class="error-message" id="errorMessage"></p>
+  </form>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      var employeeId = document.getElementById("employeeId").value;
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var aadhar = document.getElementById("aadhar").value;
+      var errorMessage = document.getElementById("errorMessage");
+
+      // Simple validation for demonstration purposes
+      if (employeeId.trim() === '' || name.trim() === '' || email.trim() === '' || phone.trim() === '' || aadhar.trim() === '') {
+        errorMessage.textContent = "All fields are required";
+        return;
+      }
+
+      // Regular expressions for validation
+      var employeeIdRegex = /^\d{5}$/;
+      var aadharRegex = /^\d{12}$/;
+      var phoneRegex = /^[0-9]{10}$/;
+
+      if (!employeeIdRegex.test(employeeId)) {
+        errorMessage.textContent = "Employee ID must be 5 digits";
+        return;
+      }
+
+      if (!phoneRegex.test(phone)) {
+        errorMessage.textContent = "Invalid phone number";
+        return;
+      }
+
+      if (!aadharRegex.test(aadhar)) {
+        errorMessage.textContent = "Aadhar card must be 12 digits";
+        return;
+      }
+
+      // You can add more advanced validation here
+
+      // If all validations pass, submit the form
+      errorMessage.textContent = "";
+      // You can submit the form data to the server here
+      alert("Form submitted successfully!");
+    }
+  </script>
+
+</body>
+</html>
