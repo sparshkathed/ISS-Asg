@@ -1,5 +1,6 @@
 -- Select, Distinct, Where, And & Or, Order By:
 SELECT column1, column2 FROM table_name WHERE condition AND/OR condition ORDER BY column1;
+
 -- Insert Into:
 INSERT INTO table_name (column1, column2) VALUES (value1, value2);
 
